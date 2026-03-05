@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import AppLayout from "@/components/layout/AppLayout";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -14,6 +15,17 @@ import Onboarding from "./pages/Onboarding";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+function PlaceholderPage({ title }: { title: string }) {
+  return (
+    <AppLayout>
+      <div className="flex h-[60vh] flex-col items-center justify-center text-center">
+        <h1 className="font-heading text-3xl font-bold text-foreground mb-2">{title}</h1>
+        <p className="text-muted-foreground">Coming soon in Phase 2! 🚧</p>
+      </div>
+    </AppLayout>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -41,18 +53,5 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
-// Temporary placeholder for pages we'll build in later phases
-function PlaceholderPage({ title }: { title: string }) {
-  const AppLayout = require("@/components/layout/AppLayout").default;
-  return (
-    <AppLayout>
-      <div className="flex h-[60vh] flex-col items-center justify-center text-center">
-        <h1 className="font-heading text-3xl font-bold text-foreground mb-2">{title}</h1>
-        <p className="text-muted-foreground">Coming soon in Phase 2! 🚧</p>
-      </div>
-    </AppLayout>
-  );
-}
 
 export default App;
